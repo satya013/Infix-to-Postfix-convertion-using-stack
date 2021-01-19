@@ -17,14 +17,18 @@ int preced(char ch)      //to check precedence
 string inTopost(string infix)
 {stack<char>stk;
 stk.push('@');         //intially add any special char to point out end of stack
-string postfix=" ";   //to store final postfix  expression
-string::iterator it;  //to read infix expression character by character
-for(it=infix.begin();it!=infix.end();it++)
+
+ string postfix=" ";   //to store final postfix  expression
+
+ string::iterator it;  //to read infix expression character by character
+
+ for(it=infix.begin();it!=infix.end();it++)
 {
 	if(isalnum(char(*it)))  //if alphanumerical char simply add to postfix exp.
-        postfix+=*it;
+            postfix+=*it;
 
-	else if(*it=='(')stk.push(*it);
+	else if(*it=='(')
+		stk.push(*it);
 	else if(*it==')')
 		 {
 		 	while(stk.top()!='@'&&stk.top()!=')')  //if ')' pop out untill encounter a '(' and add to postfix exp.
@@ -47,7 +51,7 @@ for(it=infix.begin();it!=infix.end();it++)
 						stk.pop();
 					}
 					stk.push(*it);   //then push the new operator
-					}    
+				}    
 		 }
 }
 while(stk.top()!='@')  //pop out and add to postfix exp. if there is any operator left
@@ -61,7 +65,7 @@ return postfix;
 int main()
 {
 	string infix;
-	cout<<"Enter the infix expression : \n";
+	cout<<"Enter the infix expression : \n";  //input
 	getline(cin,infix);
 	cout<<"Postfix expression : ";
 	cout<<inTopost(infix);
